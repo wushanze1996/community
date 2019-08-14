@@ -2,6 +2,8 @@ package com.wszstudy.community.controller;
 
 import com.wszstudy.community.dto.AccessTokenDTO;
 import com.wszstudy.community.dto.GithubUser;
+import com.wszstudy.community.entity.User;
+import com.wszstudy.community.mapper.UserMapper;
 import com.wszstudy.community.provider.GithubProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,11 +12,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.UUID;
 
 @Controller
 public class AuthorizeController {
     @Autowired
     private GithubProvider githubProvider;
+    @Autowired
+    UserMapper userMapper;
     @Value("${github.client_id}")
     String client_id;
     @Value("${github.client_secret}")
@@ -30,10 +35,18 @@ public class AuthorizeController {
         accessTokenDTO.setState(state);
         accessTokenDTO.setRedirect_uri(redirect_uri);
         String accessToken = githubProvider.getAccessToken(accessTokenDTO);
-        GithubUser user = githubProvider.getUser(accessToken);
-        if(user != null)
+        GithubUser githubUser = githubProvider.getUser(accessToken);
+        if(githubUser != null)
         {
-            request.getSession().setAttribute("user",user);
+            User user = new User();
+            user.setToken(UUID.randomUUID().toString());
+            user.setName(githubUser.getName());
+            user.setAccount_id(String.valueOf(githubUser.getId()));
+            user.setGmt_create(System.currentTimeMillis());
+            user.setGmt_modified(user.getGmt_create());
+            userMapper.insert(user);
+
+            request.getSession().setAttribute("user",githubUser);
             return "redirect:/";
         }else {
             return "redirect:/";
