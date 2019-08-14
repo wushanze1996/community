@@ -38,6 +38,13 @@ public class AuthorizeController {
         GithubUser githubUser = githubProvider.getUser(accessToken);
         if(githubUser != null)
         {
+//            User user = new User();
+//            user.setToken(UUID.randomUUID().toString());
+//            user.setName(githubUser.getName());
+//            user.setAccount_id(String.valueOf(githubUser.getId()));
+//            user.setGmt_create(System.currentTimeMillis());
+//            user.setGmt_modified(user.getGmt_create());
+//            userMapper.insert(user);
             User user = new User();
             user.setToken(UUID.randomUUID().toString());
             user.setName(githubUser.getName());
