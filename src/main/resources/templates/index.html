@@ -31,7 +31,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a th:if="${session.user == null}" href="https://github.com/login/oauth/authorize?client_id=b8abe9236e3d41cb22d3&redirect_uri=http://localhost:8080/callback&scope=user&state=1">登录</a></li>
                 <li class="dropdown">
-                    <a href="#" th:if="${session.user != null}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">我 <span class="caret"></span></a>
+                    <a href="#" th:if="${session.user != null}" th:text="${session.user.getName()}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">消息中心</a></li>
                         <li><a href="#">个人资料</a></li>
