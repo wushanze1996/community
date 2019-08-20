@@ -45,5 +45,31 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
+<div class="container-fluid main">
+    <div class="row">
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12" style="height: 500px">
+            <h2><span class="glyphicon glyphicon-list" aria-hidden="false">发起</span></h2>
+            <div class="media" th:each="question:${questions}">
+                <div class="media-left media-middle">
+                    <a href="#">
+                        <img class="media-object" th:src="${question.user.getAvatar_url()}" style="width: 38px;height: 38px">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading" th:text="${question.getTitle()}">前面报错不知道哪错了</h4>
+                    <span th:text="${question.getDescription()}"></span>
+                    <br>
+                    <span >浏览数：[[${question.getView_count()}]]</span>
+                    <span >点赞数：[[${question.getLike_count()}]]</span>
+                    <span>发布时间：[[${#dates.format(question.getGmt_create(),'yyyy-MM-dd')}]]</span>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12" style="height: 500px">
+            <h3>发起规则</h3>
+        </div>
+    </div>
+</div>
 </body>
 </html>

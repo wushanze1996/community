@@ -1,9 +1,10 @@
-package com.wszstudy.community.entity;
+package com.wszstudy.community.dto;
 
+import com.wszstudy.community.entity.User;
 import lombok.Data;
 
 @Data
-public class Question {
+public class QuestionDTO {
     private int id;
     private String title;
     private String description;
@@ -13,8 +14,5 @@ public class Question {
     private int like_count;
     private int creator;
     private String tag;
-
-
-
-
+    private User user;
 }
