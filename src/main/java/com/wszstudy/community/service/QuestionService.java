@@ -10,6 +10,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.awt.geom.QuadCurve2D;
 import java.util.ArrayList;
 import java.util.List;
 @Service
@@ -88,5 +89,12 @@ public class QuestionService {
 
         return paginationDTO;
 
+    }
+
+    public QuestionDTO getById(int id) {
+        Question question = questionMapper.getById(id);
+        QuestionDTO questionDTO = new QuestionDTO();
+        BeanUtils.copyProperties(question,questionDTO);
+        return questionDTO;
     }
 }
