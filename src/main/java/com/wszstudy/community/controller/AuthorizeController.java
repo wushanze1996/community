@@ -5,6 +5,7 @@ import com.wszstudy.community.dto.GithubUser;
 import com.wszstudy.community.entity.User;
 import com.wszstudy.community.mapper.UserMapper;
 import com.wszstudy.community.provider.GithubProvider;
+import com.wszstudy.community.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -20,8 +21,10 @@ import java.util.UUID;
 public class AuthorizeController {
     @Autowired
     private GithubProvider githubProvider;
-    @Autowired
-    UserMapper userMapper;
+   @Autowired
+   private UserService userService;
+   @Autowired
+   private  UserMapper userMapper;
     @Value("${github.client_id}")
     String client_id;
     @Value("${github.client_secret}")
@@ -43,22 +46,16 @@ public class AuthorizeController {
         GithubUser githubUser = githubProvider.getUser(accessToken);
         if(githubUser != null)
         {
-//            User user = new User();
-//            user.setToken(UUID.randomUUID().toString());
-//            user.setName(githubUser.getName());
-//            user.setAccount_id(String.valueOf(githubUser.getId()));
-//            user.setGmt_create(System.currentTimeMillis());
-//            user.setGmt_modified(user.getGmt_create());
-//            userMapper.insert(user);
             User user = new User();
             String token = UUID.randomUUID().toString();
             user.setToken(token);
             user.setName(githubUser.getName());
             user.setAvatar_url(githubUser.getAvatar_url());
             user.setAccount_id(String.valueOf(githubUser.getId()));
-            user.setGmt_create(System.currentTimeMillis());
-            user.setGmt_modified(user.getGmt_create());
-            userMapper.insert(user);
+//            user.setGmt_create(System.currentTimeMillis());
+//            user.setGmt_modified(user.getGmt_create());
+            userService.createOrUpdate(user);
+            //userMapper.insert(user);
             response.addCookie(new Cookie("token",token));
             return "redirect:/";
         }else {
@@ -67,6 +64,16 @@ public class AuthorizeController {
 
 
 
+
+    }
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request,
+                         HttpServletResponse response){
+        request.getSession().removeAttribute("user");
+        Cookie cookie =new Cookie("token",null);
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
+        return "redirect:/";
 
     }
 

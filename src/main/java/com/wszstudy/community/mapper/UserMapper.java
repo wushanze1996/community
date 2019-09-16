@@ -1,10 +1,7 @@
 package com.wszstudy.community.mapper;
 
 import com.wszstudy.community.entity.User;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Service;
 
 
@@ -17,4 +14,12 @@ public interface UserMapper {
 
     @Select("select * from user where id = #{id}")
     User findById(@Param("id") int id);
+
+
+
+    @Update("update user set name = #{name},token=#{token},gmt_modified=#{gmt_modified},avatar_url=#{avatar_url} where id = #{id}")
+    void update(User user);
+
+    @Select("select * from user where account_id = #{account_id}")
+    User findByAccountId(@Param("account_id") String account_id);
 }
