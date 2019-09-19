@@ -1,5 +1,6 @@
 package com.wszstudy.community.controller;
 
+import com.wszstudy.community.dto.QuestionDTO;
 import com.wszstudy.community.entity.Question;
 import com.wszstudy.community.entity.User;
 import com.wszstudy.community.mapper.QuestionMapper;
@@ -26,7 +27,7 @@ public class PublishController {
     @GetMapping("/publish/{id}")
     public String edit(@PathVariable(name = "id") Integer id,
                        Model model){
-        Question question = questionMapper.getById(id);
+        QuestionDTO question = questionService.getById(id);
         model.addAttribute("title",question.getTitle());
         model.addAttribute("description",question.getDescription());
         model.addAttribute("tag",question.getTag());
@@ -45,6 +46,7 @@ public class PublishController {
                             @RequestParam(value = "description",required = false) String description,
                             @RequestParam(value = "tag",required = false) String tag,
                             HttpServletRequest request,
+                            @RequestParam(value = "id")Integer id,
                             Model model){
         model.addAttribute("title",title);
         model.addAttribute("description",description);
@@ -76,11 +78,11 @@ public class PublishController {
         question.setTitle(title);
         question.setTag(tag);
         question.setCreator(user.getId());
-        question.setGmt_create(System.currentTimeMillis());
-        question.setGmt_modified(question.getGmt_create());
-//        question.setId(id);
-//        questionService.createOrUpdate(question);
-        questionMapper.create(question);
+//        question.setGmt_create(System.currentTimeMillis());
+//        question.setGmt_modified(question.getGmt_create());
+        question.setId(id);
+        questionService.createOrUpdate(question);
+        //questionMapper.create(question);
         return "redirect:/";
     }
 }
