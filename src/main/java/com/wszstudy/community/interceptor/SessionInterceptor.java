@@ -1,6 +1,6 @@
 package com.wszstudy.community.interceptor;
 
-import com.wszstudy.community.entity.User;
+import com.wszstudy.community.model.User;
 import com.wszstudy.community.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

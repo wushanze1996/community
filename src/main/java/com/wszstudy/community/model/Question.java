@@ -1,4 +1,4 @@
-package com.wszstudy.community.entity;
+package com.wszstudy.community.model;
 
 import lombok.Data;
 

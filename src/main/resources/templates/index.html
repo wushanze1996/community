@@ -5,7 +5,7 @@
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/bootstrap-theme.min.css" >
+    <link rel="stylesheet"  href="/css/bootstrap-theme.min.css" >
     <script src="/js/jquery-3.4.1.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
 </head>
@@ -27,7 +27,6 @@
                     <span th:text="${question.getDescription()}"></span>
                     <br>
                     <span >浏览数：[[${question.getView_count()}]]</span>
-                    <span >点赞数：[[${question.getLike_count()}]]</span>
                     <span>发布时间：[[${#dates.format(question.getGmt_create(),'yyyy-MM-dd')}]]</span>
 
                 </div>

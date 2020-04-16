@@ -1,10 +1,9 @@
 package com.wszstudy.community.controller;
 
 import com.wszstudy.community.dto.QuestionDTO;
-import com.wszstudy.community.entity.Question;
-import com.wszstudy.community.entity.User;
+import com.wszstudy.community.model.Question;
+import com.wszstudy.community.model.User;
 import com.wszstudy.community.mapper.QuestionMapper;
-import com.wszstudy.community.mapper.UserMapper;
 import com.wszstudy.community.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

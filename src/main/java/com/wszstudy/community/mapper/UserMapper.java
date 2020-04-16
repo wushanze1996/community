@@ -1,8 +1,7 @@
 package com.wszstudy.community.mapper;
 
-import com.wszstudy.community.entity.User;
+import com.wszstudy.community.model.User;
 import org.apache.ibatis.annotations.*;
-import org.springframework.stereotype.Service;
 
 
 @Mapper

@@ -2,7 +2,7 @@ package com.wszstudy.community.controller;
 
 import com.wszstudy.community.dto.AccessTokenDTO;
 import com.wszstudy.community.dto.GithubUser;
-import com.wszstudy.community.entity.User;
+import com.wszstudy.community.model.User;
 import com.wszstudy.community.mapper.UserMapper;
 import com.wszstudy.community.provider.GithubProvider;
 import com.wszstudy.community.service.UserService;

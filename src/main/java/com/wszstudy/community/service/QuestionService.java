@@ -2,15 +2,14 @@ package com.wszstudy.community.service;
 
 import com.wszstudy.community.dto.PaginationDTO;
 import com.wszstudy.community.dto.QuestionDTO;
-import com.wszstudy.community.entity.Question;
-import com.wszstudy.community.entity.User;
+import com.wszstudy.community.model.Question;
+import com.wszstudy.community.model.User;
 import com.wszstudy.community.mapper.QuestionMapper;
 import com.wszstudy.community.mapper.UserMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.awt.geom.QuadCurve2D;
 import java.util.ArrayList;
 import java.util.List;
 @Service
@@ -19,6 +18,7 @@ public class QuestionService {
     QuestionMapper questionMapper;
     @Autowired
     UserMapper userMapper;
+
 
     public PaginationDTO list(Integer page, Integer size) {
         PaginationDTO paginationDTO = new PaginationDTO();
@@ -101,6 +101,7 @@ public class QuestionService {
     }
 
 
+
     public void createOrUpdate(Question question) {
         if(question.getId() == null){
             question.setGmt_create(System.currentTimeMillis());
@@ -112,5 +113,14 @@ public class QuestionService {
 
             questionMapper.update(question);
         }
+    }
+
+
+
+    public void inView(int id) {
+        Question question = questionMapper.getById(id);
+        question.setView_count(question.getView_count()+1);
+        questionMapper.updateAndViewCount(question);
+
     }
 }

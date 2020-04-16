@@ -1,8 +1,7 @@
 package com.wszstudy.community.controller;
 
 import com.wszstudy.community.dto.PaginationDTO;
-import com.wszstudy.community.entity.User;
-import com.wszstudy.community.mapper.UserMapper;
+import com.wszstudy.community.model.User;
 import com.wszstudy.community.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

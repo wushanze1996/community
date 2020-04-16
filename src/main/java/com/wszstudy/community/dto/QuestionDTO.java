@@ -1,6 +1,6 @@
 package com.wszstudy.community.dto;
 
-import com.wszstudy.community.entity.User;
+import com.wszstudy.community.model.User;
 import lombok.Data;
 
 @Data

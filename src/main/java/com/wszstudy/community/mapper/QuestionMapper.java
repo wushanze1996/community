@@ -1,6 +1,6 @@
 package com.wszstudy.community.mapper;
 
-import com.wszstudy.community.entity.Question;
+import com.wszstudy.community.model.Question;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -26,4 +26,8 @@ public interface QuestionMapper {
 
     @Update("update question set title = #{title},description=#{description},gmt_modified=#{gmt_modified},tag=#{tag} where id = #{id}")
     void update(Question question);
+
+
+    @Update("update question set title = #{title},description=#{description},gmt_modified=#{gmt_modified},tag=#{tag},view_count =#{view_count} where id = #{id}")
+    void updateAndViewCount(Question question);
 }
