@@ -16,13 +16,14 @@ function post() {
                 $("#comment_section").hide();
             }else {
                 alert(response.message);
+                window.open("https://github.com/login/oauth/authorize?client_id=b8abe9236e3d41cb22d3&redirect_uri=http://localhost:8080/callback&scope=user&state=1");
+                window.localStorage.setItem("colsable",true);
+
+
             }
             console.log(response)
 
         },
         dataType:"json"
-
     });
-
-
 }

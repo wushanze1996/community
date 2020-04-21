@@ -1,6 +1,6 @@
 package com.wszstudy.community.controller;
 
-import com.wszstudy.community.dto.CommentDTO;
+import com.wszstudy.community.dto.CommentCreateDTO;
 import com.wszstudy.community.mapper.CommentMapper;
 import com.wszstudy.community.model.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ public class CommentController {
     CommentMapper commentMapper;
     @ResponseBody
     @RequestMapping(value = "/comment",method = RequestMethod.POST)
-    public Object post(@RequestBody CommentDTO commentDTO){
+    public Object post(@RequestBody CommentCreateDTO commentDTO){
 
         Comment comment = new Comment();
         comment.setParent_id(commentDTO.getParent_id());

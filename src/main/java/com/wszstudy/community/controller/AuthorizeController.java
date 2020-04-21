@@ -61,10 +61,7 @@ public class AuthorizeController {
         }else {
             return "redirect:/";
         }
-
-
-
-
+        
     }
     @GetMapping("/logout")
     public String logout(HttpServletRequest request,

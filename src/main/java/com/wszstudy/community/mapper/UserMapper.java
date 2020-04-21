@@ -3,6 +3,8 @@ package com.wszstudy.community.mapper;
 import com.wszstudy.community.model.User;
 import org.apache.ibatis.annotations.*;
 
+import java.util.List;
+
 
 @Mapper
 public interface UserMapper {
@@ -21,4 +23,7 @@ public interface UserMapper {
 
     @Select("select * from user where account_id = #{account_id}")
     User findByAccountId(@Param("account_id") String account_id);
+
+    @Select("select * from user where id = #{creator}")
+    List<User> selectById(int creator);
 }
